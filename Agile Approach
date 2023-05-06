@@ -1,0 +1,7 @@
+Planning: In the first stage, requirements would be gathered from stakeholders and a backlog of tasks would be created.
+Sprint planning: The team would plan a sprint of 1-4 weeks and select a subset of tasks from the backlog to be completed during the sprint.
+Implementation: The team would implement the selected tasks during the sprint, following agile development practices such as pair programming, test-driven development, and continuous integration.
+Review and retrospective: At the end of each sprint, the team would hold a review and retrospective to discuss what was accomplished during the sprint, identify areas for improvement, and plan for the next sprint.
+Testing: Testing would be carried out continuously throughout the development process, with an emphasis on automated testing.
+Deployment: Once a feature is complete and tested, it can be deployed to the production environment.
+Maintenance: The application would continue to be maintained and improved in subsequent sprints
