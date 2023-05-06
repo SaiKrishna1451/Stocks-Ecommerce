@@ -1,0 +1,93 @@
++--------------------------------------+
+|              StockMarket              |
++--------------------------------------+
+| +stocks: List<Stock>                 |
+| +users: List<User>                   |
+| +orders: List<Order>                 |
++--------------------------------------+
+| +AddStock(stock: Stock): void        |
+| +RemoveStock(stock: Stock): void     |
+| +AddUser(user: User): void           |
+| +RemoveUser(user: User): void        |
+| +PlaceOrder(order: Order): void      |
+| +GetOrdersForUser(user: User): List<Order> |
+| +GetStocks(): List<Stock>            |
++--------------------------------------+
+
++----------------------+
+|         User         |
++----------------------+
+| -id: int              |
+| -name: string         |
+| -username: string     |
+| -password: string     |
+| -balance: decimal     |
+| -orders: List<Order>  |
++----------------------+
+| +BuyStock(stock: Stock, quantity: int): void |
+| +SellStock(stock: Stock, quantity: int): void|
++----------------------+
+
++----------------------+
+|        Stock         |
++----------------------+
+| -symbol: string       |
+| -name: string         |
+| -price: decimal       |
+| -quantity: int        |
+| -orders: List<Order>  |
++----------------------+
+
++----------------------+
+|        Order         |
++----------------------+
+| -id: int              |
+| -user: User           |
+| -stock: Stock         |
+| -quantity: int        |
+| -price: decimal       |
+| -status: OrderStatus  |
++----------------------+
+
+
+For Stock Price Prediction using Machine Learning algorithm
+
++-----------------------------------------+
+|                   MainClass              |
++-----------------------------------------+
+| -field1: int                            |
+| -field2: string                         |
+| -field3: List<OtherClass>               |
++-----------------------------------------+
+| +Method1(): void                        |
+| +Method2(param1: int, param2: string): OtherClass |
+| +Method3(): List<OtherClass>            |
++-----------------------------------------+
+
++-----------------------+    +------------------------+
+|      OtherClass       |    |        SomeClass        |
++-----------------------+    +------------------------+
+| -field1: int          |    | -field1: int            |
+| -field2: string       |    | -field2: string         |
++-----------------------+    | -field3: List<OtherClass> |
+| +Method1(): void      |    | -field4: SomeClass       |
+| +Method2(param1: int): int | | +Method1(): void        |
++-----------------------+    | +Method2(): void        |
+                              +------------------------+
+
++-------------------------------------------+
+|                   Interface1               |
++-------------------------------------------+
+| +Method1(): void                          |
++-------------------------------------------+
+
++-------------------------------------------+
+|                   Interface2               |
++-------------------------------------------+
+| +Method1(): void                          |
+| +Method2(): void                          |
++-------------------------------------------+
+
+
+
+
