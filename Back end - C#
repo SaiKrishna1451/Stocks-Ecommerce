@@ -1,0 +1,92 @@
+Here's the explanation of C# code for the back end in a stock market and prediction application. This code uses the Alpha Vantage API to fetch historical stock market data, trains a linear regression model using the Accord.NET machine learning library, and exposes a REST API endpoint to predict the stock price for a given date.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Accord.IO;
+using Accord.MachineLearning;
+using Accord.Math;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+
+namespace StockMarketPrediction.Backend.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class StockPricePredictionController : ControllerBase
+    {
+        private readonly HttpClient _client;
+        private readonly string _apiKey;
+        private readonly MultipleLinearRegression _model;
+
+        public StockPricePredictionController(HttpClient client)
+        {
+            _client = client;
+            _apiKey = "YOUR_API_KEY_HERE";
+
+            // Load historical stock market data
+            List<StockPrice> historicalData = LoadHistoricalData();
+
+            // Train linear regression model using historical data
+            _model = new MultipleLinearRegression(historicalData.Count, 1);
+            double[][] inputs = historicalData.Select(x => new[] { x.Timestamp.ToOADate() }).ToArray();
+            double[] outputs = historicalData.Select(x => x.ClosePrice).ToArray();
+            _model.Regress(inputs, outputs);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<double>> Get(DateTime date)
+        {
+            // Fetch stock market data for given date
+            string url = $"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&apikey={_apiKey}";
+            HttpResponseMessage response = await _client.GetAsync(url);
+            string responseString = await response.Content.ReadAsStringAsync();
+            JObject jsonData = JObject.Parse(responseString);
+            double closePrice = (double)jsonData["Time Series (Daily)"][$"{date:yyyy-MM-dd}"]["4. close"];
+
+            // Predict stock price using linear regression model
+            double[] input = new[] { date.ToOADate() };
+            double predictedPrice = _model.Transform(input).First();
+
+            return Ok(predictedPrice);
+        }
+
+        private List<StockPrice> LoadHistoricalData()
+        {
+            string url = $"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&apikey={_apiKey}";
+            HttpResponseMessage response = _client.GetAsync(url).Result;
+            string responseString = response.Content.ReadAsStringAsync().Result;
+            JObject jsonData = JObject.Parse(responseString);
+
+            List<StockPrice> historicalData = new List<StockPrice>();
+            foreach (var item in jsonData["Time Series (Daily)"])
+            {
+                DateTime timestamp = DateTime.Parse(item.Key);
+                double openPrice = (double)item.Value["1. open"];
+                double highPrice = (double)item.Value["2. high"];
+                double lowPrice = (double)item.Value["3. low"];
+                double closePrice = (double)item.Value["4. close"];
+                historicalData.Add(new StockPrice(timestamp, openPrice, highPrice, lowPrice, closePrice));
+            }
+
+            return historicalData;
+        }
+    }
+
+    public class StockPrice
+    {
+        public DateTime Timestamp { get; }
+        public double OpenPrice { get; }
+        public double HighPrice { get; }
+        public double LowPrice { get; }
+        public double ClosePrice { get; }
+
+        public StockPrice(DateTime timestamp, double openPrice, double highPrice, double lowPrice, double closePrice)
+        {
+            Timestamp = timestamp;
+            OpenPrice = openPrice;
+            HighPrice = highPrice;
+           
