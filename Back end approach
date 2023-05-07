@@ -1,4 +1,4 @@
-Certainly! Here are examples of Java code for some of the key features of a stock market and prediction application:
+Certainly! Here are explanations of Java code for some of the key features of a stock market and prediction application:
 
 1. Retrieve Stock Data from API:
 
@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 public class StockAPI {
-    private static final String API_KEY = "your-api-key-here";
+    private static final String API_KEY = "ir-api-key-here";
 
     public static List<StockData> getStockData(String symbol, Date startDate, Date endDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,5 +95,3 @@ public class StockPrediction {
 ```
 
 In this code, we define a `StockPrediction` class that includes a `predictFuturePrice` method for analyzing historical stock data to predict the future stock price. The method uses various techniques such as linear regression, time series analysis, and machine learning to make the prediction.
-
-Note that the code for parsing the JSON response
