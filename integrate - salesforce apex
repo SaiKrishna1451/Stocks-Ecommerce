@@ -1,12 +1,12 @@
-To integrate Salesforce Apex into a stock market and prediction application, we can use the Salesforce APIs to retrieve, store, and update data in your Salesforce organization. Here are some steps:
+To integrate Salesforce Apex into a stock market and prediction application, i can use the Salesforce APIs to retrieve, store, and update data in ir Salesforce organization. Here are some steps:
 
-2. Define the data model: Next, you need to define the data model that will be used to store the stock market and prediction data in Salesforce. This includes creating custom objects, fields, and relationships that will be used to store and retrieve the data.
+2. Define the data model: Next, i need to define the data model that will be used to store the stock market and prediction data in Salesforce. This includes creating custom objects, fields, and relationships that will be used to store and retrieve the data.
 
-3. Write Apex classes: Once you have defined the data model, you can write Apex classes that will interact with the Salesforce APIs to retrieve, store, and update data in your Salesforce organization. For example, you can write an Apex class that retrieves stock data from an external API and stores it in a custom object in Salesforce. You can also write Apex classes that perform calculations and predictions based on the stored data.
+3. Write Apex classes: Once i have defined the data model, i can write Apex classes that will interact with the Salesforce APIs to retrieve, store, and update data in ir Salesforce organization. For example, i can write an Apex class that retrieves stock data from an external API and stores it in a custom object in Salesforce. i can also write Apex classes that perform calculations and predictions based on the stored data.
 
-4. Implement API endpoints: To interact with the Apex classes from the front-end of your application, i need to implement API endpoints that expose the Apex methods as REST or SOAP APIs. This includes defining the endpoints, methods, and parameters that will be used to retrieve and manipulate data.
+4. Implement API endpoints: To interact with the Apex classes from the front-end of ir application, i need to implement API endpoints that expose the Apex methods as REST or SOAP APIs. This includes defining the endpoints, methods, and parameters that will be used to retrieve and manipulate data.
 
-5. Integrate with front-end: Finally, i can integrate the Salesforce APIs with the front-end of your application using JavaScript. i used the Salesforce REST API to retrieve data from Salesforce and display it in a dashboard or chart.
+5. Integrate with front-end: Finally, i can integrate the Salesforce APIs with the front-end of ir application using JavaScript. i used the Salesforce REST API to retrieve data from Salesforce and display it in a dashboard or chart.
 
 Apex code that retrieves stock data from an external API and stores it in a custom object in Salesforce:
 
@@ -23,7 +23,7 @@ public class StockData {
 
   public static void retrieveAndStoreStockData(String symbol, Date startDate, Date endDate) {
     // Code to retrieve stock data from external API
-    String apiUrl = 'https://api.marketstack.com/v1/eod?access_key=your-api-key-here' +
+    String apiUrl = 'https://api.marketstack.com/v1/eod?access_key=ir-api-key-here' +
                     '&symbols=' + symbol +
                     '&date_from=' + startDate.format('yyyy-MM-dd') +
                     '&date_to=' + endDate.format('yyyy-MM-dd');
@@ -47,7 +47,7 @@ public class StockData {
 }
 ```
 
-In this code, we define an `StockData` class that represents stock data and includes properties such as symbol, date, and price. The class also includes a `retrieveAndStoreStockData` method that retrieves historical stock data from an external API and stores it in a custom object called `Stock__c
+In this code, i define an `StockData` class that represents stock data and includes properties such as symbol, date, and price. The class also includes a `retrieveAndStoreStockData` method that retrieves historical stock data from an external API and stores it in a custom object called `Stock__c
 
 
 
@@ -138,9 +138,9 @@ Visualforce.remoting.Manager.invokeAction(
 );
 ```
 
-In this code, we use the `Visualforce.remoting.Manager.invokeAction` method to make a request to the `getStockData` method of the `StockDataController` class. We pass in the stock symbol, start date, and end date as parameters, and provide a callback function to handle the response.
+In this code, i use the `Visualforce.remoting.Manager.invokeAction` method to make a request to the `getStockData` method of the `StockDataController` class. i pass in the stock symbol, start date, and end date as parameters, and provide a callback function to handle the response.
 
-In the `StockDataController` class, we define the `getStockData` method to retrieve stock data from the `Stock__c` custom object and return it as a list of JSON objects:
+In the `StockDataController` class, i define the `getStockData` method to retrieve stock data from the `Stock__c` custom object and return it as a list of JSON objects:
 
 ```
 // Apex code in ir Salesforce organization
@@ -176,6 +176,6 @@ public with sharing class StockDataController {
 }
 ```
 
-In this code, we use the `@RemoteAction` annotation to indicate that the `getStockData` method is a JavaScript Remoting method. The method retrieves stock data from the `Stock__c` custom object using a SOQL query, and converts the data to a list of JSON objects that can be returned to the front-end application.
+In this code, i use the `@RemoteAction` annotation to indicate that the `getStockData` method is a JavaScript Remoting method. The method retrieves stock data from the `Stock__c` custom object using a SOQL query, and converts the data to a list of JSON objects that can be returned to the front-end application.
 
-By using Salesforce Apex to provide a back-end for ir stock market and prediction application, i can take advantage of the powerful data management and processing capabilities of the Salesforce platform while providing a modern, responsive front-end for ir users.
+By using Salesforce Apex to provide a back-end for ir stock market and prediction application, i can take advantage of the poirful data management and processing capabilities of the Salesforce platform while providing a modern, responsive front-end for ir users.
