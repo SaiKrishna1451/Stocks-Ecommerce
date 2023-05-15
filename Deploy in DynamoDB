@@ -1,0 +1,74 @@
+To deploy Ecommerce application with DynamoDB as the backend database on AWS Here are the steps:
+
+1. Setting  up DynamoDB area:
+   - Open the AWS Management Console and navigate to the DynamoDB service.
+   - Created a new DynamoDB table with the desired schema to store your application data.
+
+2. Connected my application to DynamoDB:
+   - Installed the AWS SDK for JavaScript in my project:
+     
+     npm install aws-sdk
+   
+   - Import the AWS SDK into my components to interact with DynamoDB:
+ 
+     import AWS from 'aws-sdk';
+   
+   - Setting up the AWS SDK configuration with your AWS credentials and the region where my DynamoDB table is located.
+    
+     import AWS from 'aws-sdk';
+
+     AWS.config.update({
+       region: 'us-east-1', 
+       accessKeyId: 'YOUR_ACCESS_KEY_ID',
+       secretAccessKey: 'YOUR_SECRET_ACCESS_KEY',
+     });
+
+     export default AWS;
+     
+   - Used the AWS SDK to interact with DynamoDB by performing CRUD operations. For example, i used the `DocumentClient` provided by the AWS SDK to work with DynamoDB data using JavaScript objects:
+    
+     import React, { useEffect, useState } from 'react';
+     import AWS from './awsConfig';
+
+     const MyComponent = () => {
+       const [data, setData] = useState([]);
+
+       useEffect(() => {
+         fetchData();
+       }, []);
+
+       const fetchData = async () => {
+         const dynamoDB = new AWS.DynamoDB.DocumentClient();
+         const params = {
+           TableName: 'DynamoDB_Table', 
+         };
+
+         try {
+           const result = await dynamoDB.scan(params).promise();
+           setData(result.Items);
+         } catch (error) {
+           console.log(error);
+         }
+       };
+
+       return (
+         <div>
+           {data.map((item) => (
+             <div key={item.id}>
+               <h2>{item.title}</h2>
+               <p>{item.description}</p>
+             </div>
+           ))}
+         </div>
+       );
+     };
+
+     export default MyComponent;
+     ```
+
+3. Deployed my  my application:
+   -  I followed the above steps mentioned earlier to deploy my application using AWS Amplify. 
+
+4. Access your deployed application:
+   - After the deployment is complete, i had access my React application using the  URL. my application will now be connected to DynamoDB, allowing  to retrieve and store data in your DynamoDB table.
+By using these steps i deployed the application successfully.
