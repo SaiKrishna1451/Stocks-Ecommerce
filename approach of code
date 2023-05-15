@@ -41,3 +41,6 @@ Mobile Responsiveness:
 
 used responsive design techniques such as CSS media queries to adjust the layout of the application based on the device screen size.
 used responsive components or layouts to ensure that the application is mobile-friendly.
+
+
+Finally Deploy everything in DynamoDB
